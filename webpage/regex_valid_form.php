@@ -19,8 +19,11 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 					} else {
 						$match="Does not match!";
 					}
+    $whitespaceRemoved=preg_replace("/[ ]/","",$text);
+	$non_numericRemoved=preg_replace("/[^0-9,.]+/","",$text);
+	$newlinesRemoved=preg_replace("/[\n]/"," ",$text);
+	$textExtracted=preg_replace("/($replaceText)/","[$replaceText]",$text);
 }
-
 ?>
 
 
@@ -47,8 +50,17 @@ if ($_SERVER["REQUEST_METHOD"]=="POST") {
 
 			<dt>Replaced Text</dt>
 			<dd> <code><?=	$replacedText ?></code></dd>
-
+            <dt>Whitespace Removed Text</dt>
+            <dd><code><?= $whitespaceRemoved ?></code></dd>
+            <dt>Non-numeric Characters Removed Text</dt>
+            <dd><code><?= $non_numericRemoved ?></code></dd>
 			<dt>&nbsp;</dt>
+            <dt>New Lines Removed Text</dt>
+            <dd><code><?= $newlinesRemoved ?></code></dd>
+            <dt>&nbsp;</dt>
+            <dt>Text extracted</dt>
+            <dd><code><?= $textExtracted ?></code></dd>
+            <dt>&nbsp;</dt>
 			<dd><input type="submit" value="Check"></dd>
 		</dl>
 
